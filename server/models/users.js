@@ -1,44 +1,41 @@
-const Sequelize = require('sequelize');
+module.exports = (sequelize, DataTypes) => {
+  const Users = sequelize.define('users', {
+    id: {
+      allowNull: false,
+      autoIncrement: true,
+      primaryKey: true,
+      type: DataTypes.INTEGER,
+    },
+    name: {
+      allowNull: false,
+      type: DataTypes.STRING,
+    },
+    phoneNumber: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      unique: true,
+    },
+    createdAt: {
+      allowNull: false,
+      type: DataTypes.DATE,
+    },
+    updatedAt: {
+      allowNull: false,
+      type: DataTypes.DATE,
+    },
+  });
 
-module.exports = class Users extends Sequelize.Model {
-  static fields() {
-    return {
-      id: {
-        allowNull: false,
-        autoIncrement: true,
-        primaryKey: true,
-        type: Sequelize.INTEGER,
-      },
-      name: {
-        allowNull: false,
-        type: Sequelize.STRING,
-      },
-      phoneNumber: {
-        type: Sequelize.INTEGER,
-        allowNull: false,
-        unique: true,
-      },
-      createdAt: {
-        allowNull: false,
-        type: Sequelize.DATE,
-      },
-      updatedAt: {
-        allowNull: false,
-        type: Sequelize.DATE,
-      },
-    };
-  }
-
-  static associate(models) {
-    Users.hasMany(models.Messages, {
+  Users.associate = (models) => {
+    Users.hasMany(models.messages, {
       foreignKey: 'receiver',
       onDelete: 'CASCADE',
       onUpdate: 'CASCADE',
     });
-    Users.hasMany(models.Messages, {
+    Users.hasMany(models.messages, {
       foreignKey: 'sender',
       onDelete: 'CASCADE',
       onUpdate: 'CASCADE',
     });
-  }
+  };
+  return Users;
 };
