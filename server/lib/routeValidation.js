@@ -1,4 +1,4 @@
-const { body } = require('express-validator/check');
+const { body, param } = require('express-validator/check');
 
 module.exports = {
   createUser: [
@@ -14,5 +14,24 @@ module.exports = {
       .withMessage('phoneNumber field is required')
       .isMobilePhone('any')
       .withMessage('Invalid phone number supplied'),
+  ],
+  createMessage: [
+    body('receiver')
+      .exists()
+      .withMessage('receiver field is required')
+      .trim()
+      .isMobilePhone('any')
+      .withMessage('Invalid phone number supplied'),
+    body('message')
+      .exists()
+      .withMessage('message field is required')
+      .trim()
+      .isLength({ min: 1 })
+      .withMessage('Message field cannot be empty'),
+    param('senderId')
+      .exists()
+      .withMessage('senderId param is required')
+      .isNumeric()
+      .withMessage('Expects a numeric value for senderId'),
   ],
 };
