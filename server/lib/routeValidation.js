@@ -35,7 +35,7 @@ module.exports = {
       .isNumeric()
       .withMessage('Expects a numeric value for senderId'),
   ],
-  deleteAccount: [
+  userIdValidation: [
     param('id')
       .isNumeric()
       .withMessage('Expects a numeric value for id'),
