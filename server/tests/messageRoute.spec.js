@@ -1,11 +1,20 @@
 const { users } = require('../models');
+const { user, secondUser, message } = require('../lib/constants');
+const { clearDatabase } = require('../lib/utils');
 
-const user = { name: 'gbenga', phoneNumber: '08099223457' };
-const secondUser = { name: 'Washington', phoneNumber: '911' };
-const message = { receiver: '911', message: 'hello world' };
 describe('Create message', () => {
-  beforeAll(() => users.create(user).then(() => {
-    users.create(secondUser);
+  beforeAll((done) => {
+    clearDatabase().then(() => {
+      users.create(user).then(() => {
+        users.create(secondUser).then(() => {
+          done();
+        });
+      });
+    });
+  });
+
+  afterAll(done => clearDatabase().then(() => {
+    done();
   }));
   it('should send error when payload is not properly formatted', (done) => {
     request
