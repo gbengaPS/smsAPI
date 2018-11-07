@@ -13,4 +13,5 @@ router.post(
   checkUserExists,
   MessageController.sendMessage,
 );
+router.delete('/users/:id', validation.deleteAccount, sendValidationError, UserController.delete);
 module.exports = router;
