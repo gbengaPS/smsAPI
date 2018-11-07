@@ -31,7 +31,13 @@ module.exports = {
     param('senderId')
       .exists()
       .withMessage('senderId param is required')
+      .trim()
       .isNumeric()
       .withMessage('Expects a numeric value for senderId'),
+  ],
+  deleteAccount: [
+    param('id')
+      .isNumeric()
+      .withMessage('Expects a numeric value for id'),
   ],
 };
