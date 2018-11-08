@@ -2,12 +2,13 @@ const { user } = require('../lib/constants');
 const { clearDatabase } = require('../lib/utils');
 
 describe('Users', () => {
-  beforeAll(done => clearDatabase().then(() => {
-    done();
-  }));
-  afterAll(done => clearDatabase().then(() => {
-    done();
-  }));
+  beforeAll(async () => {
+    await clearDatabase();
+  });
+
+  afterAll(async () => {
+    await clearDatabase();
+  });
   describe('Create User', () => {
     it('should fail if name or phone number field is empty', (done) => {
       request

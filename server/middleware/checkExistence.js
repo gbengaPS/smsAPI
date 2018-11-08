@@ -1,6 +1,6 @@
 const { users } = require('../models');
 
-const checkUserExists = (req, res, next) => {
+exports.checkUserExists = (req, res, next) => {
   const { senderId } = req.params;
   const { receiver } = req.body;
   users.findOne({ where: { id: senderId } }).then((user) => {
@@ -26,4 +26,18 @@ const checkUserExists = (req, res, next) => {
   });
 };
 
-module.exports = checkUserExists;
+exports.checkUserId = (req, res, next) => {
+  const { id } = req.params;
+  if (!Number(id)) {
+    res.status(400).send({ error: 'Expects a numeric value for id' });
+  } else {
+    users.findOne({ where: { id } }).then((user) => {
+      if (!user) {
+        res.status(404).send({ error: 'User not found' });
+      } else {
+        req.user = user;
+        next();
+      }
+    });
+  }
+};
