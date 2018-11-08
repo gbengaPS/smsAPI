@@ -103,6 +103,7 @@ describe('Message', () => {
         .send()
         .end((err, res) => {
           expect(res.statusCode).toBe(404);
+
           expect(res.body.message).toBe('User does not have any messages sent');
           done();
         });
@@ -114,6 +115,7 @@ describe('Message', () => {
         .send()
         .end((err, res) => {
           expect(res.statusCode).toBe(404);
+
           expect(res.body.message).toBe('User has not received any messages');
           done();
         });
@@ -137,6 +139,40 @@ describe('Message', () => {
         .end((err, res) => {
           expect(res.statusCode).toBe(200);
           expect(res.body.messages.length).toBeGreaterThan(0);
+          done();
+        });
+    });
+  });
+
+  describe('deleteMessage', () => {
+    it('should send error message when id is not a number', (done) => {
+      request
+        .delete('/api/v1/messages/e')
+        .send()
+        .end((err, res) => {
+          expect(res.statusCode).toBe(400);
+          expect(res.body.error.id).toBe('Expects a numeric value for id');
+          done();
+        });
+    });
+
+    it('should return error when message is not found', (done) => {
+      request
+        .delete('/api/v1/messages/5')
+        .send()
+        .end((err, res) => {
+          expect(res.statusCode).toBe(404);
+          expect(res.body.error).toBe('Message not found');
+          done();
+        });
+    });
+    it('should delete message when no error are found', (done) => {
+      request
+        .delete('/api/v1/messages/1')
+        .send()
+        .end((err, res) => {
+          expect(res.statusCode).toBe(200);
+          expect(res.body.message).toBe('Message deleted successfully');
           done();
         });
     });

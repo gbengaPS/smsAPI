@@ -5,6 +5,7 @@ exports.sendInternalServerError = (res) => {
   res.status(500).send({ error: internalErrorMessage });
 };
 
-exports.clearDatabase = () => users.destroy({ truncate: true, restartIdentity: true }).then(() => {
-  messages.destroy({ truncate: true, restartIdentity: true }).then(() => true);
-});
+exports.clearDatabase = async () => {
+  await users.destroy({ truncate: true, restartIdentity: true });
+  await messages.destroy({ truncate: true, restartIdentity: true });
+};

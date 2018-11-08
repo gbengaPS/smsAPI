@@ -49,6 +49,29 @@ class MessageController {
         sendInternalServerError(res);
       });
   }
+
+  static deleteMessage(req, res) {
+    const id = Number(req.params.id);
+    messages
+      .findOne({ where: { id } })
+      .then((message) => {
+        if (!message) {
+          res.status(404).send({ error: 'Message not found' });
+        } else {
+          messages
+            .destroy({ where: { id } })
+            .then(() => {
+              res.status(200).send({ message: 'Message deleted successfully' });
+            })
+            .catch(() => {
+              sendInternalServerError(res);
+            });
+        }
+      })
+      .catch(() => {
+        sendInternalServerError(res);
+      });
+  }
 }
 
 module.exports = MessageController;

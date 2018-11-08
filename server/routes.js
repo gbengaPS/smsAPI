@@ -16,10 +16,12 @@ router.post(
   MessageController.sendMessage,
 );
 
+router.delete('/users/:id', validation.idValidation, sendValidationError, UserController.delete);
+
 router.delete(
-  '/users/:id',
-  validation.userIdValidation,
+  '/messages/:id',
+  validation.idValidation,
   sendValidationError,
-  UserController.delete,
+  MessageController.deleteMessage,
 );
 module.exports = router;
