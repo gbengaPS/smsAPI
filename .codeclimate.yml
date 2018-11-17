@@ -1,0 +1,4 @@
+exclude_path:
+  - server/migrations
+  - server/tests
+  - server/models
