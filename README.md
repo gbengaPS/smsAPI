@@ -1,8 +1,7 @@
 # SMS API
 
-[![Build Status](https://travis-ci.org/gbengaPS/smsAPI.svg?branch=develop)](https://travis-ci.org/gbengaPS/smsAPI)
-[![Maintainability](https://api.codeclimate.com/v1/badges/7d1c278ccf0164e93ed7/maintainability)](https://codeclimate.com/github/gbengaPS/smsAPI/maintainability)
-[![Test Coverage](https://api.codeclimate.com/v1/badges/7d1c278ccf0164e93ed7/test_coverage)](https://codeclimate.com/github/gbengaPS/smsAPI/test_coverage)
+[![Build Status](https://travis-ci.org/gbengaPS/smsAPI.svg?branch=develop)](https://travis-ci.org/gbengaPS/smsAPI) [![Test Coverage](https://api.codeclimate.com/v1/badges/7d1c278ccf0164e93ed7/test_coverage)](https://codeclimate.com/github/gbengaPS/smsAPI/test_coverage) [![Maintainability](https://api.codeclimate.com/v1/badges/7d1c278ccf0164e93ed7/maintainability)](https://codeclimate.com/github/gbengaPS/smsAPI/maintainability)
+
 SMS API provides a basic SMS functionality. Users can send and receive messages
 based on defined criteria.
 
