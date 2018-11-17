@@ -31,6 +31,17 @@ Start application
 $ yarn start:dev
 ```
 
+### Endpoints
+
+| Endpoint                     | HTTP Method | Description                                |
+| ---------------------------- | ----------- | ------------------------------------------ |
+| /users/:id/messages/sent     | GET         | Returns messages a user sent               |
+| /users/:id/messages/received | GET         | Returns messages a user has received       |
+| /users                       | POST        | Creates a new user                         |
+| /users/:senderId/message     | POST        | Helps send a message to a defined receiver |
+| /users/:id                   | DELETE      | Delete user with the provided id           |
+| /messages/:id                | DELETE      | Delete a specific message                  |
+
 ### Documentation
 
 Visit [API DOC](https://documenter.getpostman.com/view/2057950/RzZ7ofvF#a8caceda-bf2c-80b3-2bf6-c10de9072d74) for API documentation
