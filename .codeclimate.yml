@@ -1,4 +1,7 @@
-exclude_path:
+engines:
+  eslint:
+    enabled: true
+exclude_patterns:
   - server/migrations
   - server/tests
   - server/models
