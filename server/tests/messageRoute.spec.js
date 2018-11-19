@@ -48,7 +48,7 @@ describe('Message', () => {
         });
     });
 
-    it('should send error when sender and receiver have the same number', (done) => {
+    it('should send error when receiver does not exist', (done) => {
       const messagePayload = { receiver: '900', message: 'hello world' };
       request
         .post('/api/v1/users/2/message')
